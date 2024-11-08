@@ -7,10 +7,7 @@ public class SnailSolution
     {
         List<int> result = new List<int>();
 
-        if (array[0].Length == 0)
-        {
-            return array[0];
-        }
+        if (array[0].Length == 0) { return array[0]; }
 
         int len = array.GetLength(0) - 1;
         int x, y, count;
@@ -21,41 +18,24 @@ public class SnailSolution
         {
             x = y = count;
 
+            // movement to the right or down
             while (x != (len - count))
             {
-                if (y >= count && y < (len - count))
-                {
-                    result.Add(array[x][y]);
-                    y++;
-                }
-                else
-                {
-                    result.Add(array[x][y]);
-                    x++;
-                }
+                if (y >= count && y < (len - count)) { result.Add(array[x][y]); y++; }
+                else { result.Add(array[x][y]); x++; }
             }
-
+            // movement to the left or up
             while (x != count)
             {
-                if (y > count && y <= (len - count))
-                {
-                    result.Add(array[x][y]);
-                    y--;
-                }
-                else
-                {
-                    result.Add(array[x][y]);
-                    x--;
-                }
+                if (y > count && y <= (len - count)) { result.Add(array[x][y]); y--; }
+                else { result.Add(array[x][y]); x--; }
             }
 
             count++;
         }
 
-        if (array.GetLength(0) % 2 != 0)
-        {
-            result.Add(array[border][border]);
-        }
+        // adding the central element in case length was not even
+        if (array.GetLength(0) % 2 != 0) { result.Add(array[border][border]); }
 
         return result.ToArray();
     }
